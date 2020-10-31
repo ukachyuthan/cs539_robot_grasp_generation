@@ -1,16 +1,17 @@
 Installation Instruction:
 1. change mayavi version to 4.7.2
 
-1. Model takes point cloud and grasps as input 
+1. Model takes point cloud and grasps as input (networks.py)
 2. Dictionary key values: 'pc' --> Point Cloud, 'transforms' --> list of grasp positions and pose
 
+Abbrievations: 
 qt --> quaternion
 rt --> rotation translation
 sa --> set abstrction
 
 pointnet_radius in networks.py is 0.02 which is being passed in pointnet_sa_module
-n_clusters in networks.py is 128 -----""------
+n_clusters      in networks.py is 128  -----             ""              ------
 
 grasp_net.py losses, backward, forward
 
-all losses losses.py
+all losses losses.py -> reconstruction loss, kl divergence loss, confidence loss
