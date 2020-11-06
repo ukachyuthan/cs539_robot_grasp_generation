@@ -15,3 +15,12 @@ n_clusters      in networks.py is 128  -----             ""              ------
 grasp_net.py losses, backward, forward
 
 all losses losses.py -> reconstruction loss, kl divergence loss, confidence loss
+
+Relevant Files:
+1. models/networks.py
+2. models/losses.py
+3. train.py
+4. test.py
+5. data/base_dataset.py
+6. grasp_sampling_data.py
+7. Dont know about visualization and rendering, may be demo/ main.py
