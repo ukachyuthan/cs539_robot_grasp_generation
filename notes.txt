@@ -24,3 +24,6 @@ Relevant Files:
 5. data/base_dataset.py
 6. grasp_sampling_data.py
 7. Dont know about visualization and rendering, may be demo/ main.py
+
+THINGS TO LOOK FOR HYPERPARAMETERS:
+INITIALIZING WEIGHTS? Different weights different results.
