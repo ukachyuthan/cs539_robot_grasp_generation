@@ -24,3 +24,28 @@ Relevant Files:
 5. data/base_dataset.py
 6. grasp_sampling_data.py
 7. Dont know about visualization and rendering, may be demo/ main.py
+
+Hyperparameters to play with:
+1. Type of initialization of weights (function for randomizing the weights)
+2. Change input dropout
+3. Decay of lr
+
+
+Changes done to add a loss:
+1. "l2_loss" loss function in loss.py -> must return a torch tensor on the device given in the argument 
+    (otherwise gives error "no attribute .item" if tensor is not returned, and different device cpu and gpu if tensor is not on the specific device)
+2.  "define_loss" function in networks.py
+3.  grasp_net.py:
+        -- define the loss in the constructor: self.custom_loss = None
+        -- "backward" function, update "self.custom_loss" variable using criterian index
+            and add to the total loss
+        -- "test" function: 
+            if needed add the custom loss to the returned values
+4. train.py:
+    add loss in "loss_types" and "loss" list which is then sent to writer to print values after every epoch
+
+
+Output is coming from forward() in grasp_net.py -> generate_grasps() in networks.py
+
+Orientation Loss
+L2 loss function
