@@ -45,6 +45,9 @@ Changes done to add a loss:
     add loss in "loss_types" and "loss" list which is then sent to writer to print values after every epoch
 
 
+Sample command:
+"python3 train.py --arch vae --dataset_root_folder "/media/mahimana/New Volume/ML-Project/Dataset" num_objects_per_batch 256 --npoints 4096 --num_grasps_per_object 16"
+
 Output is coming from forward() in grasp_net.py -> generate_grasps() in networks.py
 
 Orientation Loss
