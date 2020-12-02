@@ -11,8 +11,8 @@ def l2_loss(pred_control_points,
     # print(pred_control_points)
     # print(gt_control_points.size())
     
-    pred_coord = pred_control_points.np()
-    gt_coord = gt_control_points.np()
+    pred_coord = pred_control_points.numpy()
+    gt_coord = gt_control_points.numpy()
     
     pred_coord = pred_coord[:3]
     gt_coord = gr_coord[0:3]
