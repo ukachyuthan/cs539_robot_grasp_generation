@@ -7,11 +7,7 @@ def l2_loss(pred_control_points,
                           confidence_weight=None,
                           device="cpu"):
 
-    # print(pred_control_points.size())
-    # print(pred_control_points)
-    # print(gt_control_points.size())
-
-    error = torch.sum(torch.abs((pred_control_points - gt_control_points)**2), -1)
+    error = torch.sum(torch.abs((pred_control_points[0:2] - gt_control_points[0:2])**2), -1)
     error = torch.mean(error, -1)
     error = torch.mean(error, -1)
     
