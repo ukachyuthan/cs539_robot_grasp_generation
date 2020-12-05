@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import math
 
 def l2_loss(pred_control_points,
                           gt_control_points,
@@ -7,7 +8,18 @@ def l2_loss(pred_control_points,
                           confidence_weight=None,
                           device="cpu"):
 
-    error = torch.sum(torch.abs((pred_control_points[0:2] - gt_control_points[0:2])**2), -1)
+    orient_diff = 0
+    length = len(pred_control_points)
+    for i in range(0,length):
+        dot = torch.tensordot(gt_control_points[i],pred_control_points[i],dims=2)
+        norm_1 = torch.norm(gt_control_points[i])
+        norm_2 = torch.norm(pred_control_points[i])
+        orient_diff += math.acos(dot/(norm_1*norm_2))
+    average = orient_diff/length
+    error_raw=(math.sin(average/2))
+    torch_err = torch.tensor([error_raw]).to(device)
+
+    error = torch.sum(torch.abs(torch_err), -1)
     error = torch.mean(error, -1)
     error = torch.mean(error, -1)
     
