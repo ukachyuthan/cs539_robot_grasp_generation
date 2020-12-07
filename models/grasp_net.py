@@ -36,6 +36,7 @@ class GraspNetModel:
             self.kl_loss = None
             self.reconstruction_loss = None
             self.l2_loss = None
+            self.trans_l2_loss = None
         elif self.opt.arch == "gan":
             self.reconstruction_loss = None
         else:
@@ -95,7 +96,14 @@ class GraspNetModel:
                 confidence_weight=self.opt.confidence_weight,
                 device=self.device)
 
-            self.loss = self.kl_loss + self.reconstruction_loss + self.confidence_loss + self.l2_loss
+            self.trans_l2_loss = self.criterion[3](
+                predicted_cp,
+                self.targets,
+                confidence=confidence,
+                confidence_weight=self.opt.confidence_weight,
+                device=self.device)
+
+            self.loss = self.kl_loss + self.reconstruction_loss + self.confidence_loss + self.l2_loss + self.trans_l2_loss
         elif self.opt.arch == 'gan':
             predicted_cp, confidence = out
             predicted_cp = utils.transform_control_points(

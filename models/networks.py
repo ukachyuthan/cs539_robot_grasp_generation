@@ -89,7 +89,8 @@ def define_loss(opt):
         l2_loss = losses.l2_loss
         kl_loss = losses.kl_divergence
         reconstruction_loss = losses.control_point_l1_loss
-        return kl_loss, reconstruction_loss, l2_loss
+        trans_l2_loss = losses.trans_l2_loss
+        return kl_loss, reconstruction_loss, l2_loss, trans_l2_loss
     elif opt.arch == 'gan':
         reconstruction_loss = losses.min_distance_loss
         return reconstruction_loss

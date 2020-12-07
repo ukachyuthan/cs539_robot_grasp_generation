@@ -2,6 +2,18 @@ import torch
 import numpy as np
 import math
 
+def trans_l2_loss(pred_control_points,
+                          gt_control_points,
+                          confidence=None,
+                          confidence_weight=None,
+                          device="cpu"):
+
+    error = torch.sum(torch.abs((pred_control_points[0:2] - gt_control_points[0:2])**2), -1)
+    error = torch.mean(error, -1)
+    error = torch.mean(error, -1)
+    
+    return torch.tensor([error]).to(device)
+
 def l2_loss(pred_control_points,
                           gt_control_points,
                           confidence=None,
@@ -19,6 +31,10 @@ def l2_loss(pred_control_points,
     error_raw=(math.sin(average/2))
     torch_err = torch.tensor([error_raw]).to(device)
 
+    # transl_error = torch.sum(torch.abs((pred_control_points[0:2] - gt_control_points[0:2])**2), -1)
+    # transl_error = torch.mean(transl_error, -1)
+    # transl_error = torch.mean(transl_error, -1)
+    
     error = torch.sum(torch.abs(torch_err), -1)
     error = torch.mean(error, -1)
     error = torch.mean(error, -1)
