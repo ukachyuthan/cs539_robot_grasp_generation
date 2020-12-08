@@ -103,7 +103,7 @@ class GraspNetModel:
                 confidence_weight=self.opt.confidence_weight,
                 device=self.device)
 
-            self.loss = self.kl_loss + self.reconstruction_loss + self.confidence_loss + self.l2_loss + self.trans_l2_loss
+            self.loss = self.kl_loss + self.reconstruction_loss + self.confidence_loss + 0.2*self.l2_loss + 0.8*self.trans_l2_loss
         elif self.opt.arch == 'gan':
             predicted_cp, confidence = out
             predicted_cp = utils.transform_control_points(
