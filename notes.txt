@@ -25,5 +25,45 @@ Relevant Files:
 6. grasp_sampling_data.py
 7. Dont know about visualization and rendering, may be demo/ main.py
 
+Hyperparameters to play with:
+1. Type of initialization of weights (function for randomizing the weights)
+2. Change input dropout
+3. Decay of lr
+
+
+Changes done to add a loss:
+1. "l2_loss" loss function in loss.py -> must return a torch tensor on the device given in the argument 
+    (otherwise gives error "no attribute .item" if tensor is not returned, and different device cpu and gpu if tensor is not on the specific device)
+2.  "define_loss" function in networks.py
+3.  grasp_net.py:
+        -- define the loss in the constructor: self.custom_loss = None
+        -- "backward" function, update "self.custom_loss" variable using criterian index
+            and add to the total loss
+        -- "test" function: 
+            if needed add the custom loss to the returned values
+4. train.py:
+    add loss in "loss_types" and "loss" list which is then sent to writer to print values after every epoch
+
+
+Sample command:
+"python3 train.py --arch vae --dataset_root_folder "/media/mahimana/New Volume/ML-Project/Dataset" num_objects_per_batch 256 --npoints 4096 --num_grasps_per_object 16"
+
+The ground truth as well as the output of network both are transformed:
+1. ground truth is transformed using "utils.transform_control_points_numpy", line no. 54, grasp_sampling_data.py
+2. prediction cp is transformed using "utils.transform_control_points", line no. 78, grasp_net.py
+
+Output is coming from forward() in grasp_net.py -> generate_grasps() in networks.py
+
+Orientation Loss
+L2 loss function
+
+
+Networks:
+
+Encoder: point cloud, grasps -> 1024
+Bottleneck: 1024 (z) -> mu, logvar
+Reparameterize: mu, logvar -> z 
+Decode: point cloud, z -> q, t
+=======
 THINGS TO LOOK FOR HYPERPARAMETERS:
 INITIALIZING WEIGHTS? Different weights different results.
