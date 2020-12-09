@@ -1,0 +1,1 @@
+This package is used to setup the grasping simulation. The package depends on a MoveIt Planner API class that is developed at my lab and cannot be shared. All other code for the simulation environment has been shared. This can be used to replicate the simulation along with an opensource version of moveit
