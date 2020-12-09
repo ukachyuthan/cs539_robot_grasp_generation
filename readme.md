@@ -6,3 +6,5 @@ For installation, please follow the steps at the parent repository https://githu
 The Grasp_gen folder consists of the code for the ROS simulation.
 
 Our implementation is explained on the project website: 
+
+https://sites.google.com/view/6-dof-grasp-generation/results
