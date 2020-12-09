@@ -11,3 +11,8 @@ Now in the newly generated `vae_lr...` folder, just copy all the files from `vae
 ```
 
 (Ideally, if you use the argument for name of the folder to use for training, you don't need the first step, but I didn't test it, so not putting in the readme file)
+=======
+
+For installation, please follow the steps at the parent repository https://github.com/jsll/pytorch_6dof-graspnet.
+
+Our implementation is explained on the project website: 

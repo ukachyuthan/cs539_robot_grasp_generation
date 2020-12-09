@@ -64,3 +64,6 @@ Encoder: point cloud, grasps -> 1024
 Bottleneck: 1024 (z) -> mu, logvar
 Reparameterize: mu, logvar -> z 
 Decode: point cloud, z -> q, t
+=======
+THINGS TO LOOK FOR HYPERPARAMETERS:
+INITIALIZING WEIGHTS? Different weights different results.
